@@ -1,11 +1,20 @@
 ﻿// W3.2.cpp : 此文件包含 "main" 函数。程序执行将在此处开始并结束。
 //
-
+#include<opencv.hpp>
 #include <iostream>
-
+using namespace cv;
+using namespace std;
 int main()
 {
-    std::cout << "Hello World!\n";
+	Mat srcM = imread("C:\\project\\mao.jpg");
+	Mat src, dst1, dst2;
+	cvtColor(srcM, src, CV_RGB2GRAY);
+	adaptiveThreshold(src, dst1, 255, ADAPTIVE_THRESH_GAUSSIAN_C, THRESH_BINARY, 15, 10);
+	threshold(src, dst2, 100, 255, THRESH_BINARY);
+	imshow("I1", dst1);
+	imshow("I2", dst2);
+	waitKey(0);
+	return 0;
 }
 
 // 运行程序: Ctrl + F5 或调试 >“开始执行(不调试)”菜单
